@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 
-import Providers from '~/app/providers';
+import Providers from '~/app-providers/providers';
 import Layout from '~/lib/layout';
 
 type RootLayoutProps = {
