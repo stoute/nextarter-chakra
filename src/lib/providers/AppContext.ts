@@ -1,10 +1,9 @@
-// 'use client';
-
-import { createContext, useContext } from 'react';
-import { signal, computed, effect } from '@preact/signals-react';
 import { Firebase } from '@bsmp/api';
+import { signal, computed, effect } from '@preact/signals-react';
+import { createContext, useContext } from 'react';
 
-import packageJson from '../../package.json';
+import packageJson from '../../../package.json';
+
 import configJson from './app-config.json';
 
 // global app signals
@@ -31,42 +30,21 @@ export class App {
   public version: string = packageJson.version;
   public production: boolean = production;
   public config: any = configJson;
-  public state = signals;
   public firebase: Firebase;
   public signals = signals;
 
   constructor() {
-    this.firebase = new Firebase();
-    if (process.env.NEXT_PUBLIC_NODE_ENV === 'production')
-      this.production = true;
     this.init();
   }
 
   async init() {
+    if (process.env.NEXT_PUBLIC_NODE_ENV === 'production')
+      this.production = true;
+    this.firebase = new Firebase();
     await this.initFirebase();
-    // todo: load remote intial data
-    Object.keys(configJson.remoteData).forEach((key, i) => {
-      const value: unknown = configJson.remoteData[key];
-      console.log(key, value);
-    });
-    this.state.loading.value = false;
+    this.signals.loading.value = false;
+    if (!this.production) await this.runTests();
     console.log('app init');
-    this.runTests();
-  }
-
-  async runTests() {
-    let path = 'trips';
-    const items = await this.firebase.getCollection(path);
-    console.log(items);
-  }
-
-  log(value: any = undefined): void {
-    console.log('debug');
-    if (this.production) return;
-    if (value) {
-      console.log(value);
-      return;
-    }
     console.log(this);
   }
 
@@ -78,6 +56,28 @@ export class App {
         firebaseCredentials.password
       );
     }
+  }
+
+  async runTests() {
+    // const wp = new Wordpress();
+    // await wp.init(this.config.wordpress);
+    // const posts = await wp.getPosts();
+    // posts.map(async (post) => {
+    //   await wp.getPost(post.id, post.type);
+    //   console.log(post);
+    // });
+    // console.log(wp);
+    // console.log(posts);
+  }
+
+  log(value: any = undefined): void {
+    console.log('app log');
+    if (this.production) return;
+    if (value) {
+      console.log(value);
+      return;
+    }
+    console.log(this);
   }
 }
 

@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noEmit": false,
+    "strict": false,
     "target": "es5",
     "lib": [
       "dom",
@@ -8,9 +10,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -19,18 +19,12 @@
     "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
-      "~/*": [ "./*" ],
-      "@/*": ["./*"],
-      "@bsmp/ai": ["../bsmp/libs/ai/src/index.ts"],
-      "@bsmp/api": ["../bsmp/libs/api/src/index.ts"],
-      "@bsmp/core": ["../bsmp/libs/core/src/index.ts"],
-      "@bsmp/entities": ["../bsmp/libs/entities/src/index.ts"],
-      "@bsmp/react": ["../bsmp/libs/react/src/index.ts"],
-      "@bsmp/react-ui": ["../bsmp/libs/react-ui/src/index.ts"],
-      "@bsmp/rx": ["../bsmp/libs/rx/src/index.ts"],
-      "@bsmp/translations": ["../bsmp/libs/translations/src/index.ts"],
-      "@bsmp/ui": ["../bsmp/libs/ui/src/index.ts"],
-      "@workspace": ["libs/workspace/src/index.ts"]
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./*"
+      ]
     },
     "incremental": true,
     "plugins": [
@@ -46,7 +40,8 @@
     "**/*.tsx",
     "src",
     "commitlint.config.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "exported/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

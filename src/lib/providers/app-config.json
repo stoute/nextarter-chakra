@@ -3,6 +3,22 @@
   "colorMode": "light",
   "appName": "app-template",
   "autoLogin": true,
+  "wordpress": {
+    "--host": "wordpress-dev:8888",
+    "host": "wp-dev.local",
+    "app_server": true,
+    "base_path": "/",
+    "protocol": "http:",
+    "mainMenu": "main-menu",
+    "appMenu": "app",
+    "frontpage": {
+      "id": "35",
+      "type": "app"
+    },
+    "cache": "false",
+    "standalone": "false",
+    "version": "6.6.2"
+  },
   "remoteData": {
     "config": "config.json",
     "dummyDataProducts": "https://dummyjson.com/products"

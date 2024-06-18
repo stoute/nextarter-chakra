@@ -3,8 +3,7 @@ import {
   ColorModeScript,
   cookieStorageManager,
 } from '@chakra-ui/react';
-
-import customTheme from './theme';
+import customTheme from '~/lib/styles/theme';
 
 type ChakraProps = {
   children: React.ReactNode;
